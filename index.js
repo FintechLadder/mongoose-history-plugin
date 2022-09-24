@@ -203,7 +203,7 @@ let historyPlugin = (options = {}) => {
     obj.diff = diff || {};
     let userId=httpContext.get('userId');
     console.log('userId',userId);
-    obj.metadata.userId=userId;
+    obj.metadata=userId;
 
     if (document.__history) {
       obj.event = document.__history.event;
