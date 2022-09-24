@@ -203,6 +203,7 @@ let historyPlugin = (options = {}) => {
       'entityId':httpContext.get('entityId'),
       'entity':httpContext.get('entity'),
       'ip':httpContext.get('ip'),
+      'deviceId':httpContext.get('deviceId'),
     };
 
     if (document.__history) {
