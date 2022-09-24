@@ -251,6 +251,8 @@ let historyPlugin = (options = {}) => {
         // get userId using httpContext
         let userId = httpContext.get('userId');
         let entityType = httpContext.get('entityType');
+        console.log('entityType', entityType);
+        console.log('userId', userId);
         let currentDocument = this;
         if (currentDocument.__history !== undefined || pluginOptions.noEventSave) {
           try {
