@@ -195,16 +195,14 @@ let historyPlugin = (options = {}) => {
     })
       .sort('-' + pluginOptions.timestampFieldName)
       .select({ version: 1 });
-
-
     let obj = {};
     obj.collectionName = getModelName(document.constructor.modelName);
     obj.collectionId = document._id;
     obj.diff = diff || {};
-    let userId=httpContext.get('userId');
-    console.log('userId',userId);
     obj.metadata={
-      'userId':userId,
+      'entityId':httpContext.get('entityId'),
+      'entity':httpContext.get('entity'),
+      'ip':httpContext.get('ip'),
     };
 
     if (document.__history) {
@@ -253,11 +251,6 @@ let historyPlugin = (options = {}) => {
 
     let preSave = function (forceSave) {
       return async function (next) {
-        // get userId using httpContext
-        let userId = httpContext.get('userId');
-        let entityType = httpContext.get('entityType');
-        console.log('entityType', entityType);
-        console.log('userId', userId);
         let currentDocument = this;
         if (currentDocument.__history !== undefined || pluginOptions.noEventSave) {
           try {
