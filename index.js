@@ -201,6 +201,7 @@ let historyPlugin = (options = {}) => {
     obj.collectionName = getModelName(document.constructor.modelName);
     obj.collectionId = document._id;
     obj.diff = diff || {};
+    obj.metadata.userId=httpContext.get('userId');
 
     if (document.__history) {
       obj.event = document.__history.event;
