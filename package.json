@@ -46,6 +46,7 @@
     "LICENSE"
   ],
   "dependencies": {
+    "express-http-context": "^1.2.4",
     "jsondiffpatch": "^0.4.1",
     "semver": "^7.1.3"
   },

@@ -1,5 +1,6 @@
 let JsonDiffPatch = require('jsondiffpatch'),
   semver = require('semver');
+import httpContext from "express-http-context";
 
 let historyPlugin = (options = {}) => {
   let pluginOptions = {
@@ -48,6 +49,7 @@ let historyPlugin = (options = {}) => {
       diff: {},
       event: String,
       reason: String,
+      metadata: {},
       data: { type: mongoose.Schema.Types.Mixed },
       [pluginOptions.userFieldName]: {
         type: userCollectionIdType,
@@ -246,6 +248,9 @@ let historyPlugin = (options = {}) => {
 
     let preSave = function (forceSave) {
       return async function (next) {
+        // get userId using httpContext
+        let userId = httpContext.get('userId');
+        let entityType = httpContext.get('entityType');
         let currentDocument = this;
         if (currentDocument.__history !== undefined || pluginOptions.noEventSave) {
           try {
