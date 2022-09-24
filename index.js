@@ -1,6 +1,6 @@
 let JsonDiffPatch = require('jsondiffpatch'),
   semver = require('semver');
-import httpContext from "express-http-context";
+let httpContext = require('express-http-context');
 
 let historyPlugin = (options = {}) => {
   let pluginOptions = {
