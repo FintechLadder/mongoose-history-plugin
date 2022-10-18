@@ -150,7 +150,7 @@ let historyPlugin = (options = {}) => {
 
   let repopulate = async (document, populatedFields) => {
     for (let field of populatedFields) {
-      await document.populate(field).execPopulate();
+      await document.populate(field);
     }
   };
 
